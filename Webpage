@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health & Medical</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+        }
+
+        .navbar {
+            background: #007BFF;
+            color: #fff;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: center;
+        }
+
+        .navbar a {
+            color: #fff;
+            text-decoration: none;
+            padding: 15px 20px;
+            transition: background 0.3s;
+        }
+
+        .navbar a:hover {
+            background: #0056b3;
+        }
+
+        .section {
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .section:nth-child(even) {
+            background: #f4f4f4;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        ul li {
+            margin: 10px 0;
+        }
+
+        ul li a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+
+        ul li a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            .navbar a {
+                padding: 10px;
+            }
+
+            .section {
+                padding: 40px 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="#section1">Health Tips</a>
+            <a href="#section2">Medical Resources</a>
+        </div>
+    </nav>
+
+    <section id="section1" class="section">
+        <div class="container">
+            <h1>Health Tips</h1>
+            <p>Maintaining a healthy lifestyle is crucial for overall well-being. Here are some tips:</p>
+            <ul>
+                <li>Eat a balanced diet rich in fruits and vegetables.</li>
+                <li>Stay hydrated by drinking plenty of water.</li>
+                <li>Exercise regularly to keep your body fit.</li>
+                <li>Get enough sleep to help your body recover.</li>
+                <li>Manage stress through mindfulness and relaxation techniques.</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="section2" class="section">
+        <div class="container">
+            <h1>Medical Resources</h1>
+            <p>Access reliable medical resources for your health needs:</p>
+            <ul>
+                <li><a href="https://www.who.int/" target="_blank">World Health Organization (WHO)</a></li>
+                <li><a href="https://www.cdc.gov/" target="_blank">Centers for Disease Control and Prevention (CDC)</a></li>
+                <li><a href="https://www.mayoclinic.org/" target="_blank">Mayo Clinic</a></li>
+                <li><a href="https://www.healthline.com/" target="_blank">Healthline</a></li>
+                <li><a href="https://www.webmd.com/" target="_blank">WebMD</a></li>
+            </ul>
+        </div>
+    </section>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('.navbar a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+
+                targetElement.scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
