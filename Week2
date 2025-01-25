@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Blog Template</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+        }
+
+        .navbar ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .navbar ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .blog-posts, .about {
+            padding: 20px;
+        }
+
+        .post {
+            border: 1px solid #ccc;
+            margin-bottom: 20px;
+            padding: 10px;
+        }
+
+        .comments {
+            margin-top: 10px;
+        }
+
+        textarea {
+            width: 100%;
+            height: 50px;
+        }
+
+        .comment-list {
+            margin-top: 10px;
+        }
+
+        .comment {
+            border-top: 1px solid #ccc;
+            padding: 5px 0;
+        }
+
+        .filter {
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 600px) {
+            .navbar ul li {
+                display: block;
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <ul>
+            <li><a href="#section1">Blog Posts</a></li>
+            <li><a href="#section2">About</a></li>
+        </ul>
+    </nav>
+
+    <section id="section1" class="blog-posts">
+        <h2>Blog Posts</h2>
+        <div class="filter">
+            <label for="category">Filter by Category:</label>
+            <select id="category" onchange="filterPosts()">
+                <option value="all">All</option>
+                <option value="tech">Tech</option>
+                <option value="lifestyle">Lifestyle</option>
+            </select>
+        </div>
+        <div class="posts" id="posts">
+            <div class="post" data-category="tech">
+                <h3>Post 1: Tech Trends</h3>
+                <p>This is a blog post about the latest trends in technology.</p>
+                <button onclick="toggleCommentSection(this)">Comment</button>
+                <div class="comments" style="display:none;">
+                    <textarea placeholder="Add a comment..."></textarea>
+                    <button onclick="addComment(this)">Submit</button>
+                    <div class="comment-list"></div>
+                </div>
+            </div>
+            <div class="post" data-category="lifestyle">
+                <h3>Post 2: Healthy Living</h3>
+                <p>This post discusses tips for a healthier lifestyle.</p>
+                <button onclick="toggleCommentSection(this)">Comment</button>
+                <div class="comments" style="display:none;">
+                    <textarea placeholder="Add a comment..."></textarea>
+                    <button onclick="addComment(this)">Submit</button>
+                    <div class="comment-list"></div>
+                </div>
+            </div>
+            <!-- Add more posts as needed -->
+        </div>
+    </section>
+
+    <section id="section2" class="about">
+        <h2>About</h2>
+        <p>This blog is a platform to share insights on various topics.</p>
+    </section>
+
+    <script>
+        function toggleCommentSection(button) {
+            const commentsSection = button.nextElementSibling;
+            commentsSection.style.display = commentsSection.style.display === 'none' ? 'block' : 'none';
+        }
+
+        function addComment(button) {
+            const commentText = button.previousElementSibling.value;
+            if (commentText) {
+                const commentList = button.parentElement.querySelector('.comment-list');
+                const newComment = document.createElement('div');
+                newComment.classList.add('comment');
+                newComment.textContent = commentText;
+                commentList.appendChild(newComment);
+                button.previousElementSibling.value = ''; // Clear the textarea
+            }
+        }
+
+        function filterPosts() {
+            const selectedCategory = document.getElementById('category').value;
+            const posts = document.querySelectorAll('.post');
+
+            posts.for
