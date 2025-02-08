@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crypto Price Tracker</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .price-card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-900">
+    <!-- Navbar -->
+    <nav class="bg-blue-600 p-4 fixed w-full top-0 shadow-md">
+        <div class="container mx-auto flex justify-between">
+            <a href="#" class="text-white text-lg font-semibold">Crypto Tracker</a>
+            <div>
+                <a href="#prices" class="text-white px-4">Prices</a>
+                <a href="#about" class="text-white px-4">About</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="h-screen flex items-center justify-center bg-blue-300">
+        <h1 class="text-4xl font-bold">Real-Time Cryptocurrency Prices</h1>
+    </section>
+
+    <!-- Prices Section -->
+    <section id="prices" class="container mx-auto my-20 p-8 bg-white shadow-lg rounded-lg">
+        <h2 class="text-3xl font-semibold mb-6">Live Prices</h2>
+        <div id="crypto-prices" class="grid grid-cols-1 md:grid-cols-3 gap-6"></div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="container mx-auto my-20 p-8 bg-white shadow-lg rounded-lg">
+        <h2 class="text-3xl font-semibold">About</h2>
+        <p class="mt-2">This app fetches real-time cryptocurrency prices using a public API.</p>
+    </section>
+
+    <script>
+        async function fetchCryptoPrices() {
+            const response = await fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd');
+            const data = await response.json();
+            
+            const container = document.getElementById('crypto-prices');
+            container.innerHTML = '';
+            
+            data.slice(0, 6).forEach(coin => {
+                const priceCard = document.createElement('div');
+                priceCard.className = 'price-card';
+                priceCard.innerHTML = `
+                    <img src="${coin.image}" alt="${coin.name}" class="w-16 mx-auto">
+                    <h3 class="text-xl font-bold">${coin.name}</h3>
+                    <p class="text-lg text-gray-700">$${coin.current_price}</p>
+                `;
+                container.appendChild(priceCard);
+            });
+        }
+        
+        fetchCryptoPrices();
+        setInterval(fetchCryptoPrices, 60000);
+    </script>
+</body>
+</html>
